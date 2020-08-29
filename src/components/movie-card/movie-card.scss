@@ -1,0 +1,32 @@
+.result-item {
+  width: 30%;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.result-item__movie-info {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.result-item__btn {
+  background-color: transparent;
+  border: 2px solid #000000;
+  border-radius: 0;
+  outline: none;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #996633;
+  }
+
+  svg {
+    margin-right: 5px;
+    fill: #ff9900;
+  }
+}

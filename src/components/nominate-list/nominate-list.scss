@@ -1,0 +1,42 @@
+.nominate-list__header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  svg {
+    fill: #ff9900;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+}
+
+.nominate-list__item {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 2px solid #996633;
+}
+
+.nominate-list__movie-info {
+  width: 90%;
+}
+
+.nominate-list__btn {
+  background-color: transparent;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  cursor: pointer;
+
+  svg {
+    fill: #737373;
+  }
+}
+
+.nominate-list__count {
+  font-size: 12px;
+  position: absolute;
+  top: 35%;
+  left: 3.4%;
+}

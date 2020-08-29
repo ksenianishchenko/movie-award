@@ -1,0 +1,39 @@
+.homepage {
+  position: relative;
+}
+
+.homepage__container {
+  background-color: #663300;
+  background-image: url("https://i.ibb.co/6JT8BXd/akshay-chauhan-t-J8-VGRq-EUDg-unsplash-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center -100px;
+}
+
+.homepage__inner {
+  max-width: 1170px;
+  padding: 50px 15px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.homepage__inner--top {
+  min-height: 400px;
+  width: 100%;
+  text-align: center;
+  display: block;
+  color: #ffffff;
+}
+
+.homepage__left,
+.homepage__right {
+  padding: 10px;
+}
+
+.homepage__left {
+  width: 65%;
+}
+
+.homepage__right {
+  width: 35%;
+}
