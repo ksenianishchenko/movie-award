@@ -21,6 +21,9 @@ const NominateList = (props) => {
     <div className="nominate-list__wrap">
       {nominateList.length ? nominateList.map((movie, index) => {
         return <div className="nominate-list__item" key={`index-${index}`}>
+          <div className="nominate-list__poster">
+            <img className="nominate-list__img" src={movie.Poster} width="30" height="60" alt={`poster for ${movie.Title}`}/>
+          </div>
           <div className="nominate-list__movie-info">
             <span className="nominate-list__movie-title">{movie.Title}</span>
             <span className="nominate-list__movie-year">{movie.Year}</span>

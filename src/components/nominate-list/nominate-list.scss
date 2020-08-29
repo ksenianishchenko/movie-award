@@ -13,8 +13,18 @@
 .nominate-list__item {
   display: flex;
   align-items: center;
-  padding: 20px 0;
-  border-bottom: 2px solid #996633;
+  padding: 5px 0;
+}
+
+.nominate-list__poster {
+  margin-right: 10px;
+  width: 50px;
+  overflow: hidden;
+}
+
+.nominate-list__img {
+  width: auto;
+  height: 60px;
 }
 
 .nominate-list__movie-info {
