@@ -35,6 +35,33 @@ const onLoginRequest = (user) => {
   }
 }
 
+const onLogoutRequest = () => {
+  return (dispatch) => {
+    axios.delete("http://localhost:3001/logout", {withCredentials: true})
+    .then((res) => {
+      if(res.data.logged_out === true) {
+        dispatch(setIsLoggin(false));
+      }
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+}
+
+const onAuthorizationRequest = () => {
+  return (dispatch) => {
+    axios.get("http://localhost:3001/logged_in", {withCredentials: true})
+    .then((res) => {
+      if(res.data.logged_in === true) {
+        dispatch(setIsLoggin(true));
+        dispatch(setCurrentUser(res.data.user));
+      }
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+}
+
 const userReducer = (state = INITIAL_STATE, action) => {
   switch(action.type) {
     case userTypes.SET_CURRENT_USER:
@@ -52,4 +79,4 @@ const userReducer = (state = INITIAL_STATE, action) => {
   }
 }
 
-export {userReducer, addNewUser, onLoginRequest};
+export {userReducer, addNewUser, onLoginRequest, onLogoutRequest, onAuthorizationRequest};
