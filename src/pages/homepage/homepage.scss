@@ -5,8 +5,11 @@
 .homepage__link {
   background-color: #ffffff;
   padding: 10px;
-  margin: 10px;
   border-radius: 5px;
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+  margin-top: 80px;
 
   &:hover {
     background-color: #000000;
@@ -21,6 +24,7 @@
   background-size: cover;
   background-position: center -100px;
   position: relative;
+  height: 100%;
 
   &::after {
     content: '';
@@ -41,16 +45,19 @@
   padding: 50px 15px;
   margin: 0 auto;
   display: flex;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 2;
 }
 
 .homepage__inner--top {
-  min-height: 400px;
   width: 100%;
   text-align: center;
   display: block;
   color: #ffffff;
   position: relative;
   z-index: 2;
+  background: transparent;
 }
 
 .homepage__left,
