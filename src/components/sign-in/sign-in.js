@@ -2,28 +2,38 @@ import React, {useState} from "react";
 
 import FormInput from "../form-input/form-input";
 import FormButton from "../form-button/form-button";
+import {connect} from "react-redux";
+import {onLoginRequest} from "../../redux/user/user-reducer";
 
 import "./sign-in.scss";
 
-const handleSubmit = () => {
+const SignIn = (props) => {
+  const [inputValues, setInputValues] = useState({
+    email: '',
+    password: ''
+  });
 
-}
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
 
-const handleChange = () => {
+    const {onLoginFormRequest} = props;
+    const user = inputValues;
+    onLoginFormRequest(user);
+  }
 
-}
+  const handleChange = (evt) => {
+    const {name, value} = evt.target;
 
-const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+    setInputValues({...inputValues, [name]: value });
+  }
 
   return <div className='sign-in'>
-   <h2 class="title">Sign in with your email and password</h2>
+   <h2 className="title">Sign in with your email and password</h2>
    <form className='sign-up-form' onSubmit={handleSubmit}>
      <FormInput
        type='email'
        name='email'
-       value={email}
+       value={inputValues.email}
        onChange={handleChange}
        label='Email'
        required
@@ -31,7 +41,7 @@ const SignIn = () => {
      <FormInput
        type='password'
        name='password'
-       value={password}
+       value={inputValues.password}
        onChange={handleChange}
        label='Password'
        required
@@ -41,4 +51,10 @@ const SignIn = () => {
   </div>
 }
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => ({
+  onLoginFormRequest: (user) => {
+    dispatch(onLoginRequest(user));
+  }
+})
+
+export default connect(null, mapDispatchToProps)(SignIn);

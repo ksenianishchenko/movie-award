@@ -8,7 +8,7 @@ import "./sign-up-page.scss";
 const SignUpPage = () => {
   return <div className="sign-up-page">
     <div className="sign-up-page__inner">
-      <h1 class="title">Movie Awards App</h1>
+      <h1 className="title">Movie Awards App</h1>
       <div className="sign-up-page__wrap">
         <SignIn />
         <SignUp />

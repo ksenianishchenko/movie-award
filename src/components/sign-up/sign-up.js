@@ -1,31 +1,40 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import FormInput from "../form-input/form-input";
 import FormButton from "../form-button/form-button";
+import {connect} from "react-redux";
+import {addNewUser} from "../../redux/user/user-reducer";
 
 import "./sign-up.scss";
 
-const handleSubmit = () => {
+const SignUp = (props) => {
+  const [inputValues, setInputValues] = useState({
+    username: '',
+    email: '',
+    password: '',
+    password_confirmation: ''
+  });
 
-}
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
 
-const handleChange = () => {
+    const {addNewUserToDb} = props;
+    let user = inputValues;
+    addNewUserToDb(user);
+  }
 
-}
-
-const SignUp = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setconfirmPassword] = useState('');
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
+    setInputValues({ ...inputValues, [name]: value });
+  }
 
   return <div className='sign-up'>
-    <h2 class="title">Sign up with your email and password</h2>
+    <h2 className="title">Sign up with your email and password</h2>
     <form className='sign-up-form' onSubmit={handleSubmit}>
       <FormInput
         type='text'
-        name='name'
-        value={name}
+        name='username'
+        value={inputValues.username}
         onChange={handleChange}
         label='Display Name'
         required
@@ -33,7 +42,7 @@ const SignUp = () => {
       <FormInput
         type='email'
         name='email'
-        value={email}
+        value={inputValues.email}
         onChange={handleChange}
         label='Email'
         required
@@ -41,15 +50,15 @@ const SignUp = () => {
       <FormInput
         type='password'
         name='password'
-        value={password}
+        value={inputValues.password}
         onChange={handleChange}
         label='Password'
         required
       />
       <FormInput
         type='password'
-        name='confirmPassword'
-        value={confirmPassword}
+        name='password_confirmation'
+        value={inputValues.password_confirmation}
         onChange={handleChange}
         label='Confirm Password'
         required
@@ -59,4 +68,10 @@ const SignUp = () => {
   </div>
 }
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => ({
+  addNewUserToDb: (user) => {
+    dispatch(addNewUser(user));
+  }
+})
+
+export default connect(null, mapDispatchToProps)(SignUp);
