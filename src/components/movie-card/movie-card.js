@@ -4,11 +4,12 @@ import PropTypes from "prop-types";
 import { FaTrophy } from "react-icons/fa";
 import { connect } from "react-redux";
 import { updateNominateList } from "../../redux/movie/movie-actions";
+import {addNewMovie} from "../../redux/movie/movie-reducer";
 
 import "./movie-card.scss";
 
 const MovieCard = (props) => {
-  const {movie, key, nominateList, updateMoviesList} = props;
+  const {movie, key, nominateList, addNewNominate, currentUser} = props;
 
   return <div className="result-item" key={`index-${key}`}>
     <div className="result-item__poster">
@@ -22,7 +23,7 @@ const MovieCard = (props) => {
       nominateList.length === 5 ? '' : <div>
       {
         movie.is_nominate ? <p>Already in nominates</p> : <button className="result-item__btn" type="button" onClick={() => {
-        updateMoviesList(movie);
+        addNewNominate(movie, currentUser);
       }}><FaTrophy /> nominate</button>}
       </div>
     }
@@ -53,12 +54,16 @@ MovieCard.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  nominateList: state.movie.nominateList
+  nominateList: state.movie.nominateList,
+  currentUser: state.user.currentUser
 })
 
 const mapDispatchToProps = (dispatch) => ({
   updateMoviesList: (movie) => {
     dispatch(updateNominateList(movie));
+  },
+  addNewNominate: (movieToAdd, currentUser) => {
+    dispatch(addNewMovie(movieToAdd, currentUser))
   }
 })
 

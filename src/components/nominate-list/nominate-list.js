@@ -1,16 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 
 import { FaTrashAlt } from "react-icons/fa";
 import { connect } from "react-redux";
 import {removeFromNominateList} from "../../redux/movie/movie-actions";
+import {onUpdateNominateList, onNominateDelete} from "../../redux/movie/movie-reducer";
 import { FaTrophy } from "react-icons/fa";
 import Banner from "../banner/banner";
 
 import "./nominate-list.scss";
 
 const NominateList = (props) => {
-  const {nominateList, removeMovieFromNominates} = props;
+  const {nominateList, removeMovieFromNominates, getNominates } = props;
+
+  useEffect(() => getNominates(), []);
 
   return <div className="nominate-list">
     <div className="nominate-list__header">
@@ -22,11 +25,11 @@ const NominateList = (props) => {
       {nominateList.length ? nominateList.map((movie, index) => {
         return <div className="nominate-list__item" key={`index-${index}`}>
           <div className="nominate-list__poster">
-            <img className="nominate-list__img" src={movie.Poster} width="30" height="60" alt={`poster for ${movie.Title}`}/>
+            <img className="nominate-list__img" src={movie.poster} width="30" height="60" alt={`poster for ${movie.title}`}/>
           </div>
           <div className="nominate-list__movie-info">
-            <span className="nominate-list__movie-title">{movie.Title}</span>
-            <span className="nominate-list__movie-year">{movie.Year}</span>
+            <span className="nominate-list__movie-title">{movie.title}</span>
+            <span className="nominate-list__movie-year">{movie.year}</span>
           </div>
           <button className="nominate-list__btn" type="button" onClick={() => {
             removeMovieFromNominates(movie);
@@ -44,14 +47,15 @@ const NominateList = (props) => {
 NominateList.propTypes = {
   nominateList: PropTypes.arrayOf(
     PropTypes.shape({
-      Title: PropTypes.string.isRequired,
-      Year: PropTypes.string.isRequired,
-      imdbID: PropTypes.string.isRequired,
-      Type: PropTypes.string,
-      Poster: PropTypes.string.isRequired
+      title: PropTypes.string.isRequired,
+      year: PropTypes.string.isRequired,
+      imdbId: PropTypes.string.isRequired,
+      movie_type: PropTypes.string,
+      poster: PropTypes.string.isRequired
     })
   ),
-  removeMovieFromNominates: PropTypes.func
+  removeMovieFromNominates: PropTypes.func,
+  getNominates: PropTypes.func
 }
 
 const mapStateToProps = (state) => ({
@@ -60,7 +64,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   removeMovieFromNominates: (movie) => {
-    dispatch(removeFromNominateList(movie))
+    dispatch(onNominateDelete(movie.id));
+  },
+  getNominates: () => {
+    dispatch(onUpdateNominateList())
   }
 })
 
