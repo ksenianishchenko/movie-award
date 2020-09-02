@@ -8,6 +8,7 @@ import {addNewUser} from "../../redux/user/user-reducer";
 import "./sign-up.scss";
 
 const SignUp = (props) => {
+  const {addNewUserToDb, error} = props;
   const [inputValues, setInputValues] = useState({
     username: '',
     email: '',
@@ -18,7 +19,6 @@ const SignUp = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    const {addNewUserToDb} = props;
     let user = inputValues;
     addNewUserToDb(user);
   }
@@ -64,9 +64,14 @@ const SignUp = (props) => {
         required
       />
       <FormButton type="submit">Sign Up</FormButton>
+      {error ? <p className="main-text error">{error}</p> : ''}
     </form>
   </div>
 }
+
+const mapStateToProps = (state) => ({
+  error: state.user.onSignUpError
+})
 
 const mapDispatchToProps = (dispatch) => ({
   addNewUserToDb: (user) => {
@@ -74,4 +79,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

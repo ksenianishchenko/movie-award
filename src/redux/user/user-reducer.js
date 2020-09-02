@@ -1,10 +1,12 @@
 import userTypes from "./user-types";
-import {setCurrentUser, setIsLoggin} from "./user-actions";
+import {setCurrentUser, setIsLoggin, setErrorsOnSignUp, setErrorsOnLogin} from "./user-actions";
 import axios from "axios";
 
 const INITIAL_STATE = {
   currentUser: null,
-  isLoggedIn: false
+  isLoggedIn: false,
+  onLoginError: '',
+  onSignUpError: ''
 }
 
 const addNewUser = (user) => {
@@ -14,6 +16,10 @@ const addNewUser = (user) => {
       if(res.data.status === "created") {
         dispatch(setCurrentUser(res.data.user));
         dispatch(setIsLoggin(true));
+      }
+
+      if(res.data.status === 400) {
+        dispatch(setErrorsOnSignUp(res.data.errors[0]));
       }
     }).catch((error) => {
       console.log(error);
@@ -28,6 +34,10 @@ const onLoginRequest = (user) => {
       if(res.data.logged_in === true) {
         dispatch(setCurrentUser(res.data.user));
         dispatch(setIsLoggin(true));
+      }
+
+      if(res.data.status === 401) {
+        dispatch(setErrorsOnLogin(res.data.errors[0]));
       }
     }).catch((error) => {
       console.log(error);
@@ -73,6 +83,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isLoggedIn: action.payload
+      }
+    case userTypes.SET_ERRORS_ON_LOGGIN:
+      return {
+        ...state,
+        onLoginError: action.payload
+      }
+    case userTypes.SET_ERRORS_ON_SIGN_UP:
+      return {
+        ...state,
+        onSignUpError: action.payload
       }
     default:
       return state;

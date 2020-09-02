@@ -9,3 +9,13 @@ export const setIsLoggin = (status) => ({
   type: userTypes.SET_LOGGED_IN_STATUS,
   payload: status
 })
+
+export const setErrorsOnLogin = (error) => ({
+  type: userTypes.SET_ERRORS_ON_LOGGIN,
+  payload: error
+})
+
+export const setErrorsOnSignUp = (error) => ({
+  type: userTypes.SET_ERRORS_ON_SIGN_UP,
+  payload: error
+})

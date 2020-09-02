@@ -8,6 +8,7 @@ import {onLoginRequest} from "../../redux/user/user-reducer";
 import "./sign-in.scss";
 
 const SignIn = (props) => {
+  const {error, onLoginFormRequest} = props;
   const [inputValues, setInputValues] = useState({
     email: '',
     password: ''
@@ -16,7 +17,6 @@ const SignIn = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    const {onLoginFormRequest} = props;
     const user = inputValues;
     onLoginFormRequest(user);
   }
@@ -47,9 +47,14 @@ const SignIn = (props) => {
        required
      />
      <FormButton type="submit">Sign In</FormButton>
+     {error ? <p className="main-text error">{error}</p> : ''}
    </form>
   </div>
 }
+
+const mapStateToProps = (state) => ({
+  error: state.user.onLoginError
+})
 
 const mapDispatchToProps = (dispatch) => ({
   onLoginFormRequest: (user) => {
@@ -57,4 +62,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
