@@ -3,6 +3,7 @@ import React from "react";
 import SearchForm from "../../components/search-form/search-form";
 import SearchResults from "../../components/search-results/serach-results";
 import NominateList from "../../components/nominate-list/nominate-list";
+import About from "../../components/about/about";
 import { Link } from 'react-router-dom';
 import {connect} from "react-redux";
 import {onLogoutRequest} from "../../redux/user/user-reducer";
@@ -28,16 +29,18 @@ const Homepage = (props) => {
           }
         </div>
       </div>
+      <div className="homepage__inner">
       {
-        isLoggedIn ? <div className="homepage__inner">
-          <div className="homepage__left">
+        isLoggedIn ? <div className="homepage__wrap">
+        <div className="homepage__left">
             <SearchResults />
           </div>
           <div className="homepage__right">
             <NominateList />
           </div>
-        </div> : ''
+        </div> : <About />
       }
+      </div>
     </div>
 }
 
