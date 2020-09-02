@@ -9,3 +9,10 @@
     color: #ffffff;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .sign-in {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}

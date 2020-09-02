@@ -62,3 +62,16 @@
   margin: 0 auto;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .banner__inner {
+    width: 80%;
+    height: auto;
+    top: 2%;
+    padding: 20px 10px;
+
+    .title {
+      font-size: 16px;
+    }
+  }
+}

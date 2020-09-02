@@ -5,7 +5,6 @@ import {hot} from "react-hot-loader";
 import Homepage from "./pages/homepage/homepage";
 import WelcomePage from "./pages/welcome-page/welcome-page";
 import SignUpPage from "./pages/sign-up-page/sign-up-page";
-import SignInPage from "./pages/sign-in-page/sign-in-page";
 import {connect} from "react-redux";
 import {onAuthorizationRequest} from "./redux/user/user-reducer";
 

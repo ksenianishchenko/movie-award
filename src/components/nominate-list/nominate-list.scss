@@ -50,3 +50,9 @@
   top: 35%;
   left: 3.4%;
 }
+
+@media screen and (max-width: 768px) {
+  .nominate-list__count {
+    left: 4%;
+  }
+}

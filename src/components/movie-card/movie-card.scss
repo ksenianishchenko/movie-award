@@ -30,3 +30,9 @@
     fill: #ff9900;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .result-item {
+    width: 100%;
+  }
+}

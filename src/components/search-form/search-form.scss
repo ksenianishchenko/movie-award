@@ -38,3 +38,13 @@
   top: 40%;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .search-form {
+    width: 100%;
+  }
+
+  .search-form__input-wrap {
+    padding: 0;
+  }
+}

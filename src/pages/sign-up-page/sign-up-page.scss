@@ -28,7 +28,7 @@
 }
 
 .sign-up-page__inner {
-  width: 1170px;
+  max-width: 1170px;
   padding: 15px;
   padding-top: 30px;
   margin: 0 auto;
@@ -43,5 +43,11 @@
 
   .title {
     margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sign-up-page__wrap {
+    display: block;
   }
 }

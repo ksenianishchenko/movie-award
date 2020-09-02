@@ -94,3 +94,34 @@
 .homepage__right {
   width: 35%;
 }
+
+@media screen and (max-width: 768px) {
+  .homepage__container {
+    background-position: center center;
+  }
+
+  .homepage__inner {
+    padding: 10px;
+  }
+
+  .homepage__wrap {
+    flex-wrap: wrap;
+  }
+
+  .homepage__left,
+  .homepage__right {
+    width: 100%;
+  }
+
+  .homepage__right {
+    order: 1;
+  }
+
+  .homepage__left {
+    order: 2;
+  }
+
+  .homepage__link {
+    margin-top: 20px;
+  }
+}
