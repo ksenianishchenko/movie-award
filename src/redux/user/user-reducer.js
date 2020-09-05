@@ -1,6 +1,8 @@
 import userTypes from "./user-types";
 import {setCurrentUser, setIsLoggin, setErrorsOnSignUp, setErrorsOnLogin} from "./user-actions";
+import {onUpdateNominateList} from "../movie/movie-reducer";
 import axios from "axios";
+import API from '../../api';
 
 const INITIAL_STATE = {
   currentUser: null,
@@ -11,7 +13,7 @@ const INITIAL_STATE = {
 
 const addNewUser = (user) => {
   return dispatch => {
-    axios.post("http://localhost:3001/users", {user}, {withCredentials: true})
+    API.post("users", {user}, {withCredentials: true})
     .then((res) => {
       if(res.data.status === "created") {
         dispatch(setCurrentUser(res.data.user));
@@ -29,11 +31,12 @@ const addNewUser = (user) => {
 
 const onLoginRequest = (user) => {
   return (dispatch) => {
-    axios.post("http://localhost:3001/login", {user}, {withCredentials: true})
+    API.post("http://localhost:3001/login", {user}, {withCredentials: true})
     .then((res) => {
       if(res.data.logged_in === true) {
         dispatch(setCurrentUser(res.data.user));
         dispatch(setIsLoggin(true));
+        dispatch(onUpdateNominateList(res.data.user.id));
       }
 
       if(res.data.status === 401) {
@@ -47,7 +50,7 @@ const onLoginRequest = (user) => {
 
 const onLogoutRequest = () => {
   return (dispatch) => {
-    axios.delete("http://localhost:3001/logout", {withCredentials: true})
+    API.delete("logout", {withCredentials: true})
     .then((res) => {
       if(res.data.logged_out === true) {
         dispatch(setIsLoggin(false));
@@ -60,11 +63,12 @@ const onLogoutRequest = () => {
 
 const onAuthorizationRequest = () => {
   return (dispatch) => {
-    axios.get("http://localhost:3001/logged_in", {withCredentials: true})
+    API.get("logged_in", {withCredentials: true})
     .then((res) => {
       if(res.data.logged_in === true) {
         dispatch(setIsLoggin(true));
         dispatch(setCurrentUser(res.data.user));
+        dispatch(onUpdateNominateList(res.data.user.id));
       }
     }).catch((error) => {
       console.log(error);

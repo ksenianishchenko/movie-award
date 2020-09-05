@@ -14,7 +14,7 @@ const Banner = () => {
   return <div className={`banner ${isVisible}`} >
       <div className="banner__inner">
         <FaTrophy />
-        <h3 className="title title--h3">Thank you for your choise</h3>
+        <h3 className="title title--h3">Thank you for your choice</h3>
         <button type="button" className="banner__btn" onClick={() => {
           setIsVisible('');
         }}>Close</button>

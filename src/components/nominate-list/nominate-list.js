@@ -11,9 +11,7 @@ import Banner from "../banner/banner";
 import "./nominate-list.scss";
 
 const NominateList = (props) => {
-  const {nominateList, removeMovieFromNominates, getNominates } = props;
-
-  useEffect(() => getNominates(), []);
+  const {nominateList, removeMovieFromNominates, getNominates, currentUser } = props;
 
   return <div className="nominate-list">
     <div className="nominate-list__header">
@@ -32,7 +30,7 @@ const NominateList = (props) => {
             <span className="nominate-list__movie-year">{movie.year}</span>
           </div>
           <button className="nominate-list__btn" type="button" onClick={() => {
-            removeMovieFromNominates(movie);
+            removeMovieFromNominates(movie, currentUser.id);
           }}><FaTrashAlt /></button>
         </div>
         }) : <p className="nominate-list__text">Your list of nominates is empty</p>
@@ -59,15 +57,16 @@ NominateList.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  nominateList: state.movie.nominateList
+  nominateList: state.movie.nominateList,
+  currentUser: state.user.currentUser
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  removeMovieFromNominates: (movie) => {
-    dispatch(onNominateDelete(movie.id));
+  removeMovieFromNominates: (movie, currentUserId) => {
+    dispatch(onNominateDelete(movie.id, currentUserId));
   },
-  getNominates: () => {
-    dispatch(onUpdateNominateList())
+  getNominates: (id) => {
+    dispatch(onUpdateNominateList(id))
   }
 })
 

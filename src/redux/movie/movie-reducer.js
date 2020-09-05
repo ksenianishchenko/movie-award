@@ -1,6 +1,7 @@
 import movieTypes from './movie-types';
 import {setMoviesList, checkIfMovieIsNominate, updateNominateList} from "./movie-actions";
 import axios from "axios";
+import API from '../../api';
 import {addToNominateList, removeFromNominateList} from "./movie-utils";
 
 const INITIAL_STATE = {
@@ -22,9 +23,9 @@ const getMoviesByTitle = (title) => {
   };
 }
 
-const onUpdateNominateList = () => {
+const onUpdateNominateList = (id) => {
   return (dispatch) => {
-    axios.get("http://localhost:3001/nominates", {withCredentials: true})
+    API.get(`nominates/${id}`, {withCredentials: true})
     .then((res) => {
       if(res.data.nominates) {
         console.log(res.data.nominates);
@@ -46,14 +47,14 @@ const addNewMovie = (movieToAdd, currentUser) => {
     user_id: currentUser.id
   }
   return dispatch => {
-    axios.post("http://localhost:3001/movies", {movie}, {withCredentials: true})
+    API.post("movies", {movie}, {withCredentials: true})
     .then((res) => {
       if(res.data.status === "created") {
         console.log(res.data.user);
       }
     })
     .then(() => {
-      dispatch(onUpdateNominateList());
+      dispatch(onUpdateNominateList(currentUser.id));
     })
     .catch((error) => {
       console.log(error);
@@ -61,11 +62,11 @@ const addNewMovie = (movieToAdd, currentUser) => {
   }
 }
 
-const onNominateDelete = (id) => {
+const onNominateDelete = (id, currentUserId) => {
   return (dispatch) => {
-    axios.delete(`http://localhost:3001/movies/${id}`, {withCredentials: true})
+    API.delete(`movies/${id}`, {withCredentials: true})
     .then((res) => {
-      dispatch(onUpdateNominateList());
+      dispatch(onUpdateNominateList(currentUserId));
     }).catch((error) => {
       console.log(error);
     })
