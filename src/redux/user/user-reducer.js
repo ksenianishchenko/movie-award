@@ -31,7 +31,7 @@ const addNewUser = (user) => {
 
 const onLoginRequest = (user) => {
   return (dispatch) => {
-    API.post("http://localhost:3001/login", {user}, {withCredentials: true})
+    API.post("login", {user}, {withCredentials: true})
     .then((res) => {
       if(res.data.logged_in === true) {
         dispatch(setCurrentUser(res.data.user));

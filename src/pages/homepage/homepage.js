@@ -6,7 +6,7 @@ import NominateList from "../../components/nominate-list/nominate-list";
 import About from "../../components/about/about";
 import { Link } from 'react-router-dom';
 import {connect} from "react-redux";
-import {onLogoutRequest} from "../../redux/user/user-reducer";
+import Header from "../../components/header/header";
 
 import "./homepage.scss";
 
@@ -15,13 +15,7 @@ const Homepage = (props) => {
   return <div className="homepage">
       <div className="homepage__container">
         <div className="homepage__inner homepage__inner--top">
-          <div className="homepage__header">
-            {
-              isLoggedIn ? <button className="homepage__logout transition" type="button" onClick={() => {
-                onLogoutUserRequest();
-              }}>Logout</button> : ''
-            }
-          </div>
+          <Header />
           <h1 className="title title--h1">Movie Awards</h1>
           <p className="main-text">Find and save 5 your favourite films you feel should be up for nomination</p>
           {

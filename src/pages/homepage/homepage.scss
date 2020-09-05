@@ -17,25 +17,6 @@
   }
 }
 
-.homepage__header {
-  text-align: right;
-}
-
-.homepage__logout {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: #ffffff;
-  font-size: 16px;
-  position: relative;
-  z-index: 2;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.5;
-  }
-}
-
 .homepage__container {
   background-color: #663300;
   background-image: url("https://i.ibb.co/6JT8BXd/akshay-chauhan-t-J8-VGRq-EUDg-unsplash-1.jpg");

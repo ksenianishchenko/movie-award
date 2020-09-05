@@ -41,16 +41,7 @@ MovieCard.propTypes = {
     imdbID: PropTypes.string.isRequired,
     Type: PropTypes.string,
     Poster: PropTypes.string.isRequired
-  }),
-  nominateList: PropTypes.arrayOf(
-    PropTypes.shape({
-      Title: PropTypes.string.isRequired,
-      Year: PropTypes.string.isRequired,
-      imdbID: PropTypes.string.isRequired,
-      Type: PropTypes.string,
-      Poster: PropTypes.string.isRequired
-    })
-  )
+  })
 }
 
 const mapStateToProps = (state) => ({
