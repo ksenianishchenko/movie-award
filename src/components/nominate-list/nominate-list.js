@@ -63,7 +63,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   removeMovieFromNominates: (movie, currentUserId) => {
-    dispatch(onNominateDelete(movie.id, currentUserId));
+    dispatch(onNominateDelete(movie, currentUserId));
   },
   getNominates: (id) => {
     dispatch(onUpdateNominateList(id))

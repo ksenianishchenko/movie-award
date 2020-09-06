@@ -55,7 +55,7 @@ const addNewMovie = (movieToAdd, currentUser) => {
     })
     .then(() => {
       dispatch(onUpdateNominateList(currentUser.id));
-      dispatch(updateMoviesResults(movieToAdd));
+      dispatch(updateMoviesResults(movie));
     })
     .catch((error) => {
       console.log(error);
@@ -63,11 +63,12 @@ const addNewMovie = (movieToAdd, currentUser) => {
   }
 }
 
-const onNominateDelete = (id, currentUserId) => {
+const onNominateDelete = (movie, currentUserId) => {
   return (dispatch) => {
-    API.delete(`movies/${id}`, {withCredentials: true})
+    API.delete(`movies/${movie.id}`, {withCredentials: true})
     .then((res) => {
       dispatch(onUpdateNominateList(currentUserId));
+      dispatch(updateMoviesResults(movie));
     }).catch((error) => {
       console.log(error);
     })
