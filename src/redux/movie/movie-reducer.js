@@ -25,7 +25,7 @@ const getMoviesByTitle = (title) => {
 
 const onUpdateNominateList = (id) => {
   return (dispatch) => {
-    API.get(`nominates/${id}`, {withCredentials: true})
+    API.get(`nominates/${id}`, {withCredentials: false})
     .then((res) => {
       if(res.data.nominates) {
         console.log(res.data.nominates);
@@ -47,7 +47,7 @@ const addNewMovie = (movieToAdd, currentUser) => {
     user_id: currentUser.id
   }
   return dispatch => {
-    API.post("movies", {movie}, {withCredentials: true})
+    API.post("movies", {movie}, {withCredentials: false})
     .then((res) => {
       if(res.data.status === "created") {
         console.log(res.data.user);
@@ -64,7 +64,7 @@ const addNewMovie = (movieToAdd, currentUser) => {
 
 const onNominateDelete = (id, currentUserId) => {
   return (dispatch) => {
-    API.delete(`movies/${id}`, {withCredentials: true})
+    API.delete(`movies/${id}`, {withCredentials: false})
     .then((res) => {
       dispatch(onUpdateNominateList(currentUserId));
     }).catch((error) => {
