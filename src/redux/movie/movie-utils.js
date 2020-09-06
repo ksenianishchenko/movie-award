@@ -13,10 +13,10 @@ export const updateMoviesList = (moviesList, movie) => {
   moviesList.map((movieInMoviesList) => {
 
     if (movieInMoviesList.imdbID === movie.imdbId) {
-      if (movie.is_nominate === false) {
-        movie.is_nominate = true;
+      if (movieInMoviesList.is_nominate === false) {
+        movieInMoviesList.is_nominate = true;
       } else {
-        movie.is_nominate = false;
+        movieInMoviesList.is_nominate = false;
       }
     }
   })
