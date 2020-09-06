@@ -1,5 +1,5 @@
-export const addToNominateList = (nominateList, movieToAdd) => {
-  const movieIsExist = nominateList.find(movie => movie.imdbID === movieToAdd.imdbID);
+export const addToNominateList = (nominateList, movies) => {
+  let movieIsExist = nominateList.find(movie => movie.imdbID === movieToAdd.imdbID);
 
   if (!movieIsExist) {
     movieToAdd.is_nominate = true;
@@ -9,8 +9,18 @@ export const addToNominateList = (nominateList, movieToAdd) => {
   }
 }
 
+export checkIfMovieIsNominate = (nominateList, moviesList) => {
+  nominateList.map((movieInNominates) => {
+    let movieIsExist = moviesList.find(movie => movie.imdbID === movieInNominates.imdbID);
+
+    if (!movieIsExist) {
+      movieIsExist.is_nominate = true;
+    }
+  })
+}
+
 export const removeFromNominateList = (nominateList, movieToRemove) => {
-  const movieIsExist = nominateList.find(movie => movie.imdbID === movieToRemove.imdbID);
+  let movieIsExist = nominateList.find(movie => movie.imdbID === movieToRemove.imdbID);
 
   if(movieIsExist) {
     movieToRemove.is_nominate = false;

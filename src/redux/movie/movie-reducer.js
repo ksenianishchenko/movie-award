@@ -2,7 +2,7 @@ import movieTypes from './movie-types';
 import {setMoviesList, checkIfMovieIsNominate, updateNominateList} from "./movie-actions";
 import axios from "axios";
 import API from '../../api';
-import {addToNominateList, removeFromNominateList} from "./movie-utils";
+import {addToNominateList, removeFromNominateList, checkIfMovieIsNominate} from "./movie-utils";
 
 const INITIAL_STATE = {
   moviesList: [],
@@ -78,12 +78,12 @@ const movieReducer = (state = INITIAL_STATE, action) => {
     case movieTypes.SET_MOVIE_LIST:
       return {
         ...state,
-        moviesList: action.payload
+        moviesList: checkIfMovieIsNominate(state.nominateList, action.payload)
       }
     case movieTypes.UPDATE_NOMINATE_LIST:
       return {
         ...state,
-        nominateList: action.payload
+        nominateList: addToNominateList(state.nominateList, action.payload)
       }
     case movieTypes.REMOVE_FROM_NOMINATE_LIST:
       return {
