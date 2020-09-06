@@ -2,7 +2,7 @@ import movieTypes from './movie-types';
 import {setMoviesList, updateNominateList, updateMoviesList} from "./movie-actions";
 import axios from "axios";
 import API from '../../api';
-import {addToNominateList, removeFromNominateList, checkIfMovieIsNominate} from "./movie-utils";
+import {addToNominateList, removeFromNominateList, checkIfMovieIsNominate, updateMoviesList} from "./movie-utils";
 
 const INITIAL_STATE = {
   moviesList: [],
