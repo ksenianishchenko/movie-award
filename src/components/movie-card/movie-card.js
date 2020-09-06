@@ -3,13 +3,17 @@ import PropTypes from "prop-types";
 
 import { FaTrophy } from "react-icons/fa";
 import { connect } from "react-redux";
-import { updateNominateList } from "../../redux/movie/movie-actions";
+import { updateMoviesList } from "../../redux/movie/movie-actions";
 import {addNewMovie} from "../../redux/movie/movie-reducer";
 
 import "./movie-card.scss";
 
 const MovieCard = (props) => {
-  const {movie, key, nominateList, addNewNominate, currentUser} = props;
+  const {movie, key, nominateList, addNewNominate, currentUser, updateMoviesResults} = props;
+
+  const isMovieExistInNominates = (movieToAdd) => {
+    return nominateList.find(movie => movie.imdbId === movieToAdd.imdbID);
+  }
 
   return <div className="result-item" key={`index-${key}`}>
     <div className="result-item__poster">
@@ -23,7 +27,11 @@ const MovieCard = (props) => {
       nominateList.length === 5 ? '' : <div>
       {
         movie.is_nominate ? <p>Already in nominates</p> : <button className="result-item__btn" type="button" onClick={() => {
-        addNewNominate(movie, currentUser);
+        const movieExist = isMovieExistInNominates(movie);
+        if (!movieExist) {
+          addNewNominate(movie, currentUser);
+          updateMoviesResults(movie);
+        }
       }}><FaTrophy /> nominate</button>}
       </div>
     }
@@ -50,11 +58,11 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  updateMoviesList: (movie) => {
-    dispatch(updateNominateList(movie));
-  },
   addNewNominate: (movieToAdd, currentUser) => {
     dispatch(addNewMovie(movieToAdd, currentUser))
+  },
+  updateMoviesResults: (movie) => {
+    dispatch(updateMoviesList(movie))
   }
 })
 

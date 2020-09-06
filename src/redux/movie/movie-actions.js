@@ -5,6 +5,11 @@ export const setMoviesList = (moviesList) => ({
   payload: moviesList
 })
 
+export const updateMoviesList = (movie) => ({
+  type: movieTypes.UPDATE_MOVIES_LIST,
+  payload: movie
+})
+
 export const updateNominateList = (list) => ({
   type: movieTypes.UPDATE_NOMINATE_LIST,
   payload: list

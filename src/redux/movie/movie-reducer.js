@@ -85,6 +85,11 @@ const movieReducer = (state = INITIAL_STATE, action) => {
         ...state,
         nominateList: action.payload
       }
+    case movieTypes.UPDATE_MOVIES_LIST:
+      return {
+        ...state,
+        moviesList: updateMoviesList(state.moviesList, action.payload)
+      }
     case movieTypes.REMOVE_FROM_NOMINATE_LIST:
       return {
         ...state,
