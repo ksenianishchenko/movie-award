@@ -9,7 +9,7 @@ export const addToNominateList = (nominateList, movies) => {
   }
 }
 
-export checkIfMovieIsNominate = (nominateList, moviesList) => {
+export const checkIfMovieIsNominate = (nominateList, moviesList) => {
   nominateList.map((movieInNominates) => {
     let movieIsExist = moviesList.find(movie => movie.imdbID === movieInNominates.imdbID);
 
