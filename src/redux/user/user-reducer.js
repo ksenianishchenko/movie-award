@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 
 const addNewUser = (user) => {
   return dispatch => {
-    API.post("users", {user}, {withCredentials: true})
+    API.post("users", {user}, {withCredentials: false})
     .then((res) => {
       if(res.data.status === "created") {
         dispatch(setCurrentUser(res.data.user));
@@ -31,7 +31,7 @@ const addNewUser = (user) => {
 
 const onLoginRequest = (user) => {
   return (dispatch) => {
-    API.post("login", {user}, {withCredentials: true})
+    API.post("login", {user}, {withCredentials: false})
     .then((res) => {
       if(res.data.logged_in === true) {
         dispatch(setCurrentUser(res.data.user));
@@ -50,7 +50,7 @@ const onLoginRequest = (user) => {
 
 const onLogoutRequest = () => {
   return (dispatch) => {
-    API.delete("logout", {withCredentials: true})
+    API.delete("logout", {withCredentials: false})
     .then((res) => {
       if(res.data.logged_out === true) {
         dispatch(setIsLoggin(false));
@@ -63,7 +63,7 @@ const onLogoutRequest = () => {
 
 const onAuthorizationRequest = () => {
   return (dispatch) => {
-    API.get("logged_in", {withCredentials: true})
+    API.get("logged_in", {withCredentials: false})
     .then((res) => {
       if(res.data.logged_in === true) {
         dispatch(setIsLoggin(true));
