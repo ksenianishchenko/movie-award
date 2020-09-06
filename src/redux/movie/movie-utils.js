@@ -11,7 +11,6 @@ export const addToNominateList = (nominateList, movieToAdd) => {
 
 export const updateMoviesList = (moviesList, movie) => {
   moviesList.map((movieInMoviesList) => {
-    let movieIsExist = nominateList.find(movie => movie.imdbId === movieInMoviesList.imdbID);
 
     if (movieInMoviesList.imdbID === movie.imdbID) {
       movie.is_nominate = true;

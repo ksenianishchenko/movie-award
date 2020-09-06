@@ -30,7 +30,6 @@ const MovieCard = (props) => {
         const movieExist = isMovieExistInNominates(movie);
         if (!movieExist) {
           addNewNominate(movie, currentUser);
-          updateMoviesResults(movie);
         }
       }}><FaTrophy /> nominate</button>}
       </div>
