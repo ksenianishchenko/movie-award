@@ -17,6 +17,8 @@ export const checkIfMovieIsNominate = (nominateList, moviesList) => {
       movieIsExist.is_nominate = true;
     }
   })
+
+  return nominateList;
 }
 
 export const removeFromNominateList = (nominateList, movieToRemove) => {
