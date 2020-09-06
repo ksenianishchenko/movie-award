@@ -3,13 +3,12 @@ import PropTypes from "prop-types";
 
 import { FaTrophy } from "react-icons/fa";
 import { connect } from "react-redux";
-import { updateMoviesList } from "../../redux/movie/movie-actions";
 import {addNewMovie} from "../../redux/movie/movie-reducer";
 
 import "./movie-card.scss";
 
 const MovieCard = (props) => {
-  const {movie, key, nominateList, addNewNominate, currentUser, updateMoviesResults} = props;
+  const {movie, key, nominateList, addNewNominate, currentUser} = props;
 
   const isMovieExistInNominates = (movieToAdd) => {
     return nominateList.find(movie => movie.imdbId === movieToAdd.imdbID);
@@ -59,9 +58,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   addNewNominate: (movieToAdd, currentUser) => {
     dispatch(addNewMovie(movieToAdd, currentUser))
-  },
-  updateMoviesResults: (movie) => {
-    dispatch(updateMoviesList(movie))
   }
 })
 
