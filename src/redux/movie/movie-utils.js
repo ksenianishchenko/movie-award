@@ -11,7 +11,7 @@ export const addToNominateList = (nominateList, movies) => {
 
 export const checkIfMovieIsNominate = (nominateList, moviesList) => {
   moviesList.map((movieInMoviesList) => {
-    let movieIsExist = nominateList.find(movie => movie.imdbID === movieInMoviesList.imdbID);
+    let movieIsExist = nominateList.find(movie => movie.imdbId === movieInMoviesList.imdbID);
 
     if (movieIsExist) {
       movieInMoviesList.is_nominate = true;
@@ -26,6 +26,6 @@ export const removeFromNominateList = (nominateList, movieToRemove) => {
 
   if(movieIsExist) {
     movieToRemove.is_nominate = false;
-    return nominateList.filter(movie => movie.imdbID !== movieToRemove.imdbID);
+    return nominateList.filter(movie => movie.imdbId !== movieToRemove.imdbId);
   }
 }
