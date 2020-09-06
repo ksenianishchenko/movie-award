@@ -1,5 +1,5 @@
 import movieTypes from './movie-types';
-import {setMoviesList, checkIfMovieIsNominate, updateNominateList} from "./movie-actions";
+import {setMoviesList, updateNominateList} from "./movie-actions";
 import axios from "axios";
 import API from '../../api';
 import {addToNominateList, removeFromNominateList, checkIfMovieIsNominate} from "./movie-utils";
