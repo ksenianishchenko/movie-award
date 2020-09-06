@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 
 const getMoviesByTitle = (title) => {
   return function(dispatch) {
-    return axios.get(`http://www.omdbapi.com/?i=tt3896198&apikey=789a991d&s=${title}`)
+    return axios.get(`https://www.omdbapi.com/?i=tt3896198&apikey=789a991d&s=${title}`)
       .then((res) => {
       const movies = res.data.Search;
       movies.map((movie) => {
