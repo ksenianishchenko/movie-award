@@ -1,5 +1,5 @@
 import movieTypes from './movie-types';
-import {setMoviesList, updateNominateList, updateMoviesList} from "./movie-actions";
+import {setMoviesList, updateNominateList, updateMoviesResults} from "./movie-actions";
 import axios from "axios";
 import API from '../../api';
 import {addToNominateList, removeFromNominateList, checkIfMovieIsNominate, updateMoviesList} from "./movie-utils";
@@ -55,7 +55,7 @@ const addNewMovie = (movieToAdd, currentUser) => {
     })
     .then(() => {
       dispatch(onUpdateNominateList(currentUser.id));
-      dispatch(updateMoviesList(movieToAdd));
+      dispatch(updateMoviesResults(movieToAdd));
     })
     .catch((error) => {
       console.log(error);
